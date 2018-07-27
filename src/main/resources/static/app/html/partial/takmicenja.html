@@ -1,0 +1,78 @@
+<h1>Takmicenja</h1>
+<div ng-controller="takmicenjaCtrl">
+
+        <form>
+            <div class="form-group">
+                <label for="naziv">Naziv</label>
+                <input type="text" class="form-control" name="naziv" ng-model="noviUcesnik.naziv" placeholder="Naziv">
+            </div>
+            <div class="form-group">
+                <label for="mesto">Mesto</label>
+                <input type="text" class="form-control" name="mesto" ng-model="noviUcesnik.mesto" placeholder="Mesto">
+            </div>
+            <div class="form-group">
+                <label for="email">Kontakt</label>
+                <input type="text" class="form-control" name="email" ng-model="noviUcesnik.email" placeholder="E-mail">
+            </div>
+            <div class="form-group">
+                <label for="takmicenje">Takmicenje</label>
+                <select class="form-control" name="takmicenje" ng-model="noviUcesnik.takmicenjeId">
+                    <option ng-repeat="takmicenje in takmicenja" value="{{takmicenje.id}}">{{takmicenje.naziv}}</option>
+
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-primary" ng-click="dodaj()">Dodaj</button>
+        </form>
+
+    <br/>
+    <br/>
+
+        <form>
+            <div class="form-group">
+                <label for="naziv">Naziv</label>
+                <input type="text" class="form-control" name="naziv" ng-model="trazeniUcesnik.naziv" placeholder="Naziv">
+            </div>
+            <div class="form-group">
+                <label for="takmicenje">Takmicenje</label>
+                <select class="form-control" name="takmicenje" ng-model="trazeniUcesnik.takmicenjeId">
+                    <option ng-repeat="takmicenje in takmicenja" value="{{takmicenje.id}}">{{takmicenje.naziv}}</option>
+
+                </select>
+            </div>
+           
+
+            <button type="button" class="btn btn-primary" ng-click="trazi()">Filtriraj</button>
+        </form>
+
+
+    <br/>
+    <br/>
+    <br/>
+    <div class="btn-group pull-right">
+        <button class="btn btn-primary" ng-click="nazad()" ng-disabled="pageNum==0">Prethodna</button>
+        <button class="btn btn-primary" ng-click="napred()" ng-disabled="pageNum == totalPages - 1">Sledeća</button>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Naziv</th>
+            <th>Mesto</th>
+            <th>Kontakt</th>
+            <th>Takmicenje</th>
+            <th>Odigranih susreta</th>
+            <th>Bodovi</th>
+        </tr>
+        <tr ng-repeat="ucesnik in ucesnici">
+            <td>{{ucesnik.naziv}}</td>
+            <td>{{ucesnik.mesto}}</td>
+            <td>{{ucesnik.email}}</td>
+            <td>{{ucesnik.takmicenjeNaziv}}</td>
+            <td>{{ucesnik.odigrano}}</td>
+            <td>{{ucesnik.brBodova}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="obrisi(ucesnik.id)">Obriši</button>
+                <button class="btn btn-warning" ng-click="izmeni(ucesnik.id)">Izmeni</button>
+            </td>
+        </tr>
+    </table>
+</div>
