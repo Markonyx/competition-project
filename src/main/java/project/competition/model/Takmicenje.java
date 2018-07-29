@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,6 +25,8 @@ public class Takmicenje {
 	private String naziv;
 	@OneToMany(mappedBy="takmicenje", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Ucesnik> ucesnici = new ArrayList<>();
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Format format;
 	public Long getId() {
 		return id;
 	}
@@ -48,9 +51,12 @@ public class Takmicenje {
 		if(!this.equals(ucesnik.getTakmicenje())) {
 			ucesnik.setTakmicenje(this);
 		}
-		
+	}
+	public Format getFormat() {
+		return format;
+	}
+	public void setFormat(Format format) {
+		this.format = format;
 	}
 	
-	
-
 }

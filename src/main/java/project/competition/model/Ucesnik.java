@@ -69,6 +69,10 @@ public class Ucesnik {
 	}
 	public void setTakmicenje(Takmicenje takmicenje) {
 		this.takmicenje = takmicenje;
+		
+		if (takmicenje != null && !takmicenje.getUcesnici().contains(this)) {
+			takmicenje.getUcesnici().add(this);
+		}
 	}
 	
 
