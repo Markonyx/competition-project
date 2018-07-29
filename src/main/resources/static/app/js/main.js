@@ -4,14 +4,8 @@ festivalApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/',{
         templateUrl: '/app/html/partial/takmicenja.html'
     })
-    .when('/festivali/edit/:id',{
-        templateUrl: '/app/html/partial/edit-festival.html'
-    })
     .when('/takmicenja/edit/:id',{
         templateUrl: '/app/html/partial/edit-takmicenja.html'
-    })
-    .when('/festivali',{
-        templateUrl: '/app/html/partial/festivali.html'
     })
     .when('/takmicenja',{
         templateUrl: '/app/html/partial/takmicenja.html'
