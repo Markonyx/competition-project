@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import project.competition.model.Takmicenje;
 import project.competition.model.Ucesnik;
+import project.competition.service.TakmicenjeService;
 import project.competition.service.UcesnikService;
 import project.competition.support.UcesnikDTOToUcesnik;
 import project.competition.support.UcesnikToUcesnikDTO;
@@ -29,6 +32,8 @@ public class ApiUcesnikController {
 	
 	@Autowired
 	private UcesnikService ucesnikService;
+	@Autowired
+	private TakmicenjeService takmicenjeService;
 	@Autowired
 	private UcesnikToUcesnikDTO toDTO;
 	@Autowired
@@ -69,7 +74,13 @@ public class ApiUcesnikController {
 			@Validated @RequestBody UcesnikDTO noviUcesnik) {
 		
 		Ucesnik ucesnik = toUcesnik.convert(noviUcesnik);
-		ucesnikService.save(ucesnik);
+		int maxUcesnika = ucesnik.getTakmicenje().getFormat().getBrUcesnika();
+		int brUcesnika = ucesnik.getTakmicenje().getUcesnici().size();
+		if (brUcesnika < maxUcesnika) {
+			ucesnikService.save(ucesnik);	
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		
 		return new ResponseEntity<>(toDTO.convert(ucesnik), HttpStatus.CREATED);
 	}
