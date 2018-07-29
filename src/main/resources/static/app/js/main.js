@@ -136,6 +136,11 @@ competitionApp.controller("takmicenjaCtrl", function($scope, $http, $location){
 
     }
     
+    $scope.table = true;
+    $scope.prikazi = function() {
+    	$scope.table = !$scope.table;
+    }
+    
    
 });
 

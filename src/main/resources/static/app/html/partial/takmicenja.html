@@ -33,32 +33,32 @@
     <br/>
 
         <form>
-            <div class="form-group">
+            <div class="form-group" ng-hide="table">
                 <label for="naziv">Naziv</label>
                 <input type="text" class="form-control" name="naziv" ng-model="trazeniUcesnik.naziv" placeholder="Naziv">
             </div>
             <div class="form-group">
                 <label for="takmicenje">Takmičenje</label>
-                <select class="form-control" name="takmicenje" ng-model="trazeniUcesnik.takmicenjeId">
+                <select class="form-control" name="takmicenje" ng-model="trazeniUcesnik.takmicenjeId" ng-change="trazi()">
                     <option ng-repeat="takmicenje in takmicenja" value="{{takmicenje.id}}">{{takmicenje.naziv}}</option>
 
                 </select>
             </div>
            
 
-            <button type="button" class="btn btn-primary" ng-click="trazi()">Filtriraj</button>
+            <button type="button" class="btn btn-primary" ng-click="prikazi()">Filtriraj</button>
         </form>
 
 
     <br/>
     <br/>
     <br/>
-    <div class="btn-group pull-right">
+    <div class="btn-group pull-right" ng-hide="table">
         <button class="btn btn-primary" ng-click="nazad()" ng-disabled="pageNum==0">Prethodna</button>
         <button class="btn btn-primary" ng-click="napred()" ng-disabled="pageNum == totalPages - 1">Sledeća</button>
     </div>
-    <button class="btn btn-primary">Dodaj rezultat</button>
-    <table class="table table-striped">
+    <button class="btn btn-primary" ng-hide="table">Dodaj rezultat</button>
+    <table class="table table-striped" ng-hide="table">
         <tr>
             <th>Naziv</th>
             <th>Mesto</th>
