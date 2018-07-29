@@ -91,6 +91,12 @@ public class ApiUcesnikController {
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/{id}")
 	public ResponseEntity<UcesnikDTO> deleteUcesnik(@PathVariable Long id) {
+		
+		Ucesnik ucesnik = ucesnikService.findOne(id);
+		if (ucesnik == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
 		ucesnikService.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

@@ -4,8 +4,11 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import project.competition.model.Format;
 import project.competition.model.Takmicenje;
 import project.competition.model.Ucesnik;
+import project.competition.service.FormatService;
 import project.competition.service.TakmicenjeService;
 import project.competition.service.UcesnikService;
 
@@ -16,16 +19,36 @@ public class TestData {
 	private TakmicenjeService takmicenjeService;
 	@Autowired
 	private UcesnikService ucesnikService;
+	@Autowired
+	private FormatService formatService;
 
 	@PostConstruct
 	public void init() {
 		
+		Format f1 = new Format();
+		f1.setNaziv("Fudbalska liga");
+		f1.setBrUcesnika(20);
+		f1.setVrPobeda(3);
+		f1.setVrNereseno(1);
+		f1.setVrGubitak(0);
+		formatService.save(f1);
+		
+		Format f2 = new Format();
+		f2.setNaziv("Kosarkaska liga");
+		f2.setBrUcesnika(25);
+		f2.setVrPobeda(6);
+		f2.setVrNereseno(3);
+		f2.setVrGubitak(0);
+		formatService.save(f2);
+		
 		Takmicenje t1 = new Takmicenje();
 		t1.setNaziv("Super liga");
+		t1.setFormat(f1);
 		takmicenjeService.save(t1);
 		
 		Takmicenje t2 = new Takmicenje();
 		t2.setNaziv("Basket liga");
+		t2.setFormat(f2);
 		takmicenjeService.save(t2);
 		
 		Ucesnik u1 = new Ucesnik();
