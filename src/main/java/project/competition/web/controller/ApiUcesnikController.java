@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import project.competition.model.Takmicenje;
+
 import project.competition.model.Ucesnik;
-import project.competition.service.TakmicenjeService;
 import project.competition.service.UcesnikService;
 import project.competition.support.UcesnikDTOToUcesnik;
 import project.competition.support.UcesnikToUcesnikDTO;
@@ -32,8 +31,6 @@ public class ApiUcesnikController {
 	
 	@Autowired
 	private UcesnikService ucesnikService;
-	@Autowired
-	private TakmicenjeService takmicenjeService;
 	@Autowired
 	private UcesnikToUcesnikDTO toDTO;
 	@Autowired
@@ -117,5 +114,5 @@ public class ApiUcesnikController {
 			DataIntegrityViolationException e) {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
-
+	
 }

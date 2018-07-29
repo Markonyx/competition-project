@@ -21,6 +21,5 @@ public interface UcesnikRepository extends JpaRepository<Ucesnik, Long> {
 			@Param("naziv") String naziv,
 			@Param("takmicenjeId") Long takmicenjeId,
 			Pageable pageRequest);
-	
 
 }

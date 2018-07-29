@@ -16,5 +16,5 @@ public interface UcesnikService {
 			@Param("naziv") String naziv,
 			@Param("takmicenjeId") Long takmicenjeId,
 			int page);
-
+	
 }

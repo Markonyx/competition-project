@@ -50,5 +50,5 @@ public class JpaUcesnikService implements UcesnikService {
 		}
 		return ucesnikRepository.pretraga(naziv, takmicenjeId, new PageRequest(page, 3));
 	}
-
+	
 }
