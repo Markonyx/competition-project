@@ -4,22 +4,14 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import project.competition.model.Festival;
-import project.competition.model.Mesto;
 import project.competition.model.Takmicenje;
 import project.competition.model.Ucesnik;
-import project.competition.service.FestivalService;
-import project.competition.service.MestoService;
 import project.competition.service.TakmicenjeService;
 import project.competition.service.UcesnikService;
 
 @Component
 public class TestData {
-	@Autowired
-	private MestoService mestoService;
-	@Autowired
-	private FestivalService festivalService;
+	
 	@Autowired
 	private TakmicenjeService takmicenjeService;
 	@Autowired
@@ -28,49 +20,13 @@ public class TestData {
 	@PostConstruct
 	public void init() {
 		
-		Mesto subotica = new Mesto();
-		subotica.setDrzava("Srbija");
-		subotica.setNaziv("Subotica");
-		subotica.setPostanskiKod(24000);
-		mestoService.save(subotica);
-		
-		Festival festival1 = new Festival();
-		festival1.setNaziv("Summer3p");
-		festival1.setCenaKarte(1230.99);
-		festival1.setKolicina(99);
-		festival1.setDatumPocetka("11.7.2018.");
-		festival1.setOrganizator("Grad Subotica");
-		festival1.setMesto(subotica);
-		festivalService.save(festival1);
-
-		Mesto noviSad = new Mesto();
-		noviSad.setDrzava("Srbija");
-		noviSad.setNaziv("Novi Sad");
-		noviSad.setPostanskiKod(21000);
-		mestoService.save(noviSad);
-		
-		Festival festival2 = new Festival();
-		festival2.setNaziv("EXIT");
-		festival2.setCenaKarte(6000.0);
-		festival2.setKolicina(99);
-		festival2.setDatumPocetka("10.7.2018.");
-		festival2.setOrganizator("Exit fondacija");
-		festival2.setMesto(noviSad);
-		festivalService.save(festival2);
-		
-		Festival festival3 = new Festival();
-		festival3.setNaziv("Festival vina");
-		festival3.setCenaKarte(200.0);
-		festival3.setKolicina(99);
-		festival3.setDatumPocetka("11.7.2018.");
-		festival3.setOrganizator("Grad Novi Sad");
-		festival3.setMesto(noviSad);
-		festivalService.save(festival3);
-		
 		Takmicenje t1 = new Takmicenje();
 		t1.setNaziv("Super liga");
 		takmicenjeService.save(t1);
 		
+		Takmicenje t2 = new Takmicenje();
+		t2.setNaziv("Basket liga");
+		takmicenjeService.save(t2);
 		
 		Ucesnik u1 = new Ucesnik();
 		u1.setNaziv("Spartak");
@@ -117,11 +73,31 @@ public class TestData {
 		u5.setBrBodova(27);
 		ucesnikService.save(u5);
 		
+		Ucesnik u6 = new Ucesnik();
+		u6.setNaziv("Lakers");
+		u6.setMesto("Los Angeles");
+		u6.setEmail("lakers@gmail.com");
+		u6.setTakmicenje(t2);
+		u6.setOdigrano(5);
+		u6.setBrBodova(26);
+		ucesnikService.save(u6);
+		
+		Ucesnik u7 = new Ucesnik();
+		u7.setNaziv("Atlanta Hawks");
+		u7.setMesto("Atlanta");
+		u7.setEmail("hawks@gmail.com");
+		u7.setTakmicenje(t2);
+		u7.setOdigrano(3);
+		u7.setBrBodova(8);
+		ucesnikService.save(u7);
+		
 		t1.addUcesnik(u1);
 		t1.addUcesnik(u2);
 		t1.addUcesnik(u3);
 		t1.addUcesnik(u4);
 		t1.addUcesnik(u5);
+		t2.addUcesnik(u6);
+		t2.addUcesnik(u7);
 		takmicenjeService.save(t1);
 		
 		

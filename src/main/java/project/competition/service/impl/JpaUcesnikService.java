@@ -20,7 +20,7 @@ public class JpaUcesnikService implements UcesnikService {
 
 	@Override
 	public Page<Ucesnik> findAll(int pageNum) {
-		return ucesnikRepository.findAll(new PageRequest(pageNum, 5));
+		return ucesnikRepository.findAll(new PageRequest(pageNum, 3));
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class JpaUcesnikService implements UcesnikService {
 
 	@Override
 	public Page<Ucesnik> findByTakmicenjeId(int pageNum, Long takmicenjeId) {
-		return ucesnikRepository.findByTakmicenjeId(takmicenjeId, new PageRequest(pageNum, 5));
+		return ucesnikRepository.findByTakmicenjeId(takmicenjeId, new PageRequest(pageNum, 3));
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class JpaUcesnikService implements UcesnikService {
 		if (naziv != null) {
 			naziv = "%" + naziv + "%";
 		}
-		return ucesnikRepository.pretraga(naziv, takmicenjeId, new PageRequest(page, 5));
+		return ucesnikRepository.pretraga(naziv, takmicenjeId, new PageRequest(page, 3));
 	}
 
 }
