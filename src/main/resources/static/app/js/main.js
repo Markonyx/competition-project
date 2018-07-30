@@ -10,6 +10,9 @@ competitionApp.config(['$routeProvider', function ($routeProvider) {
     .when('/takmicenja',{
         templateUrl: '/app/html/partial/takmicenja.html'
     })
+    .when('/takmicenja/odigraj/', {
+			templateUrl : '/app/html/partial/odigrajMec.html'
+	})
     .otherwise({
         redirectTo: '/'
     });
@@ -33,8 +36,7 @@ competitionApp.controller("takmicenjaCtrl", function($scope, $http, $location){
     $scope.noviUcesnik.takmicenjeId = "";
     $scope.noviUcesnik.odigrano = "0";
     $scope.noviUcesnik.brBodova = "0";
-
-
+    
     $scope.trazeniUcesnik = {};
     $scope.trazeniUcesnik.naziv = "";
     $scope.trazeniUcesnik.takmicenjeId = "";
@@ -141,7 +143,52 @@ competitionApp.controller("takmicenjaCtrl", function($scope, $http, $location){
     	$scope.table = !$scope.table;
     }
     
-   
+    $scope.predji=function(){
+    	
+      	 $location.path('/takmicenja/odigraj/');
+      	 
+       }
+       
+});
+
+competitionApp.controller("odigrajMecCtrl", function($scope, $http, $routeParams, $location){
+	
+	var baseUrlUcesnici = "/api/ucesnici";
+	$scope.ucesnici = [];
+	
+	$scope.odigraj={};
+    $scope.odigrajUcesnici=[];
+    
+    var getUcesnici = function(){
+        $http.get(baseUrlUcesnici)
+            .then(
+            	function success(res){
+            		$scope.ucesnici = res.data;
+            	},
+            	function error(res){
+            		alert("Neuspešno dobavljanje ucesnika!");
+            	}
+            );
+    };
+    getUcesnici();
+    
+    $scope.odigraj=function(u1,u2,ishod){
+       	var promise=$http.put(baseUrlUcesnici + "/" + u1 + "/" + u2 + "/" +  ishod);
+   		promise.then(
+   				function uspeh(res){
+   					$scope.ucesnici=res.data;
+   					getUcesnici();
+   					$location.path('/takmicenja');
+   					
+   				},
+   				function greska(){
+   					alert("greska");
+   				
+   				}
+   		);
+      }
+    
+    
 });
 
 competitionApp.controller("editUcesnikCtrl", function($scope, $http, $routeParams, $location){
@@ -182,6 +229,8 @@ competitionApp.controller("editUcesnikCtrl", function($scope, $http, $routeParam
             	}
             );
     }
+    
+    
     
 });
 

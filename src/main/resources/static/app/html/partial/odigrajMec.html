@@ -1,0 +1,25 @@
+<div ng-controller="odigrajMecCtrl">
+<form>	
+		<div class="form-group">
+			<label for="kompanijaNA">Ucesnik 1</label> <select
+				ng-model="odigraj.u1" class="form-control" id="kompanijaNA" >
+				<option ng-repeat="u in ucesnici" value="{{u.id}}">{{u.naziv}}</option>
+			</select>
+		</div>
+	<div class="form-group">
+			<label for="kompanijaNA">Ucesnik 2</label> <select
+				ng-model="odigraj.u2" class="form-control" id="kompanijaNA" >
+				<option ng-repeat="u in ucesnici" value="{{u.id}}">{{u.naziv}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="kompanijaNA">Ishod</label> <select
+				ng-model="odigraj.ishod" class="form-control" id="kompanijaNA" >
+				<option value="1">Pobeda prvog učesnika</option>
+				<option value="2">Pobeda prvog učesnika</option>
+				<option value="3">Nerešeno</option>
+			</select>
+		</div>
+		<button ng-click="odigraj(odigraj.u1,odigraj.u2,odigraj.ishod)" type="button" class="btn btn-primary">Potvrdi</button>
+	</form>
+</div>

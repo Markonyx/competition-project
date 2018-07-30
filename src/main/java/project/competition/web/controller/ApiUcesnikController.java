@@ -109,6 +109,15 @@ public class ApiUcesnikController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
+	@RequestMapping(method=RequestMethod.PUT, value="/{u1}/{u2}/{ishod}")
+	public ResponseEntity<UcesnikDTO> odigraj(@PathVariable Long u1,
+			@PathVariable Long u2, @PathVariable Long ishod) {
+		
+		ucesnikService.odigrajMec(u1, u2, ishod);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 	@ExceptionHandler
 	public ResponseEntity<Void> validationHandler(
 			DataIntegrityViolationException e) {

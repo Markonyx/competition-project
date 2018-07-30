@@ -16,5 +16,6 @@ public interface UcesnikService {
 			@Param("naziv") String naziv,
 			@Param("takmicenjeId") Long takmicenjeId,
 			int page);
+	void odigrajMec(Long ucesnik1Id, Long ucesnik2Id, Long ishod);
 	
 }

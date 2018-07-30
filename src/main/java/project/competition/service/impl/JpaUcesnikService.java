@@ -50,5 +50,33 @@ public class JpaUcesnikService implements UcesnikService {
 		}
 		return ucesnikRepository.pretraga(naziv, takmicenjeId, new PageRequest(page, 3));
 	}
+
+	@Override
+	public void odigrajMec(Long ucesnik1Id, Long ucesnik2Id, Long ishod) {
+		
+		Ucesnik ucesnik1 = ucesnikRepository.findOne(ucesnik1Id);
+		ucesnik1.setOdigrano(ucesnik1.getOdigrano() + 1);
+		ucesnikRepository.save(ucesnik1);
+		
+		Ucesnik ucesnik2 = ucesnikRepository.findOne(ucesnik2Id);
+		ucesnik2.setOdigrano(ucesnik2.getOdigrano() + 1);
+		ucesnikRepository.save(ucesnik2);
+		
+		if (ishod == 1) {
+			ucesnik1.setBrBodova(ucesnik1.getBrBodova() + ucesnik1.getTakmicenje().getFormat().getVrPobeda());
+			ucesnikRepository.save(ucesnik1);
+		}
+		if (ishod == 2) {
+			ucesnik2.setBrBodova(ucesnik2.getBrBodova() + ucesnik2.getTakmicenje().getFormat().getVrPobeda());
+			ucesnikRepository.save(ucesnik2);
+		}
+		if (ishod == 3) {
+			ucesnik1.setBrBodova(ucesnik1.getBrBodova() + ucesnik1.getTakmicenje().getFormat().getVrNereseno());
+			ucesnikRepository.save(ucesnik1);
+			ucesnik2.setBrBodova(ucesnik2.getBrBodova() + ucesnik2.getTakmicenje().getFormat().getVrNereseno());
+			ucesnikRepository.save(ucesnik2);
+		}
+		
+	}
 	
 }

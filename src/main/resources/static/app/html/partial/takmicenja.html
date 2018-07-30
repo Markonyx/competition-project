@@ -57,7 +57,7 @@
         <button class="btn btn-primary" ng-click="nazad()" ng-disabled="pageNum==0">Prethodna</button>
         <button class="btn btn-primary" ng-click="napred()" ng-disabled="pageNum == totalPages - 1">Sledeća</button>
     </div>
-    <button class="btn btn-primary" ng-hide="table">Dodaj rezultat</button>
+    <button class="btn btn-primary" ng-hide="table" ng-click="predji()">Dodaj rezultat</button>
     <table class="table table-striped" ng-hide="table">
         <tr>
             <th>Naziv</th>
