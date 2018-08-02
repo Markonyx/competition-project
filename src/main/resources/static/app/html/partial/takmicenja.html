@@ -68,7 +68,7 @@
             <th>Bodovi</th>
             <th>Opcije</th>
         </tr>
-        <tr ng-repeat="ucesnik in ucesnici">
+        <tr ng-repeat="ucesnik in ucesnici | orderBy : '-brBodova'">
             <td>{{ucesnik.naziv}}</td>
             <td>{{ucesnik.mesto}}</td>
             <td>{{ucesnik.email}}</td>
