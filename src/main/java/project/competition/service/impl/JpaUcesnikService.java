@@ -44,11 +44,11 @@ public class JpaUcesnikService implements UcesnikService {
 	}
 
 	@Override
-	public Page<Ucesnik> pretraga(String naziv, Long takmicenjeId, int page) {
+	public Page<Ucesnik> pretraga(String naziv, String mesto, Long takmicenjeId, int page) {
 		if (naziv != null) {
 			naziv = "%" + naziv + "%";
 		}
-		return ucesnikRepository.pretraga(naziv, takmicenjeId, new PageRequest(page, 3));
+		return ucesnikRepository.pretraga(naziv, mesto, takmicenjeId, new PageRequest(page, 3));
 	}
 
 	@Override

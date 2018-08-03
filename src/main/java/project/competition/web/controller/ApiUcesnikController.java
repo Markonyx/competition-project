@@ -39,13 +39,14 @@ public class ApiUcesnikController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<UcesnikDTO>> getAll(
 			@RequestParam(required=false) String naziv,
+			@RequestParam(required=false) String mesto,
 			@RequestParam(required=false) Long takmicenjeId,
 			@RequestParam(defaultValue="0") int pageNum) {
 		
 		Page<Ucesnik> ucesnici;
 		
-		if (naziv != null || takmicenjeId != null) {
-			ucesnici = ucesnikService.pretraga(naziv, takmicenjeId, pageNum);
+		if (naziv != null || mesto != null || takmicenjeId != null) {
+			ucesnici = ucesnikService.pretraga(naziv, mesto, takmicenjeId, pageNum);
 		} else {
 			ucesnici = ucesnikService.findAll(pageNum);
 		}

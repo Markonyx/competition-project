@@ -16,9 +16,11 @@ public interface UcesnikRepository extends JpaRepository<Ucesnik, Long> {
 	
 	@Query("SELECT u FROM Ucesnik u WHERE "
 			+ "(:naziv IS NULL or u.naziv like :naziv ) AND"
+			+ "(:mesto IS NULL or u.mesto like :mesto ) AND"
 			+ "(:takmicenjeId IS NULL or u.takmicenje.id = :takmicenjeId )")
 	Page<Ucesnik> pretraga(
 			@Param("naziv") String naziv,
+			@Param("mesto") String mesto,
 			@Param("takmicenjeId") Long takmicenjeId,
 			Pageable pageRequest);
 

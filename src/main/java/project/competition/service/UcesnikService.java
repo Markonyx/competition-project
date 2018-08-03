@@ -14,6 +14,7 @@ public interface UcesnikService {
 	Page<Ucesnik> findByTakmicenjeId(int pageNum, Long takmicenjeId);
 	Page<Ucesnik> pretraga(
 			@Param("naziv") String naziv,
+			@Param("mesto") String mesto,
 			@Param("takmicenjeId") Long takmicenjeId,
 			int page);
 	void odigrajMec(Long ucesnik1Id, Long ucesnik2Id, Long ishod);
