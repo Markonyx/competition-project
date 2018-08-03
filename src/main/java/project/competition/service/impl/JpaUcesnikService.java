@@ -48,6 +48,9 @@ public class JpaUcesnikService implements UcesnikService {
 		if (naziv != null) {
 			naziv = "%" + naziv + "%";
 		}
+		if (mesto != null) {
+			mesto = "%" + mesto + "%";
+		}
 		return ucesnikRepository.pretraga(naziv, mesto, takmicenjeId, new PageRequest(page, 3));
 	}
 

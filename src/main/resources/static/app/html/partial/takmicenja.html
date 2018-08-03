@@ -37,6 +37,10 @@
                 <label for="naziv">Naziv</label>
                 <input type="text" class="form-control" name="naziv" ng-model="trazeniUcesnik.naziv" ng-change="trazi()" placeholder="Naziv">
             </div>
+            <div class="form-group" ng-hide="table">
+                <label for="mesto">Mesto</label>
+                <input type="text" class="form-control" name="mesto" ng-model="trazeniUcesnik.mesto" ng-change="trazi()" placeholder="Mesto">
+            </div>
             <div class="form-group">
                 <label for="takmicenje">Takmičenje</label>
                 <select class="form-control" name="takmicenje" ng-model="trazeniUcesnik.takmicenjeId" ng-change="trazi()">

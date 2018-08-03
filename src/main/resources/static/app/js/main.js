@@ -50,6 +50,9 @@ competitionApp.controller("takmicenjaCtrl", function($scope, $http, $location){
         if($scope.trazeniUcesnik.naziv != ""){
             config.params.naziv = $scope.trazeniUcesnik.naziv;
         }
+        if($scope.trazeniUcesnik.mesto != ""){
+            config.params.mesto = $scope.trazeniUcesnik.mesto;
+        }
 
         if($scope.trazeniUcesnik.takmicenjeId != ""){
             config.params.takmicenjeId = $scope.trazeniUcesnik.takmicenjeId;
